@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useCart } from '../Cart/CartContext';
+import { toast } from 'react-toastify';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const { addToCart, cartItems } = useCart(); // added cartItems
 
   useEffect(() => {
     fetch('/products.json')
@@ -19,6 +22,18 @@ const ProductDetail = () => {
     return <div>Loading or Product not found.</div>;
   }
 
+  const rawStock = product.stock ?? 0;
+  const cartItem = cartItems.find(item => item.id === product.id);
+  const remainingStock = rawStock - (cartItem?.quantity || 0);
+
+  const handleAddToCart = () => {
+    if (remainingStock > 0) {
+      addToCart({ ...product });
+    } else {
+      toast.warning("Out of Stock");
+    }
+  };
+
   return (
     <div className="product-detail-container">
       <div className="product-detail-card">
@@ -27,13 +42,18 @@ const ProductDetail = () => {
           <h2>{product.name}</h2>
           <p className="product-description">{product.description || 'No description available.'}</p>
           <p><strong>Category:</strong> {product.category}</p>
-          <p><strong>In Stock:</strong> {product.stock || 50}</p>
+          <p><strong>In Stock:</strong> {remainingStock}</p>
           <p className="price">₹{product.price}</p>
           <p className="discount">Discount: {product.discount}%</p>
-          <p><strong>Sold by:</strong> {product.company_name}</p> {/* ✅ NEW */}
-          {/* Optional Debug Info: */}
-          {/* <p><strong>Seller ID:</strong> {product.sellerId}</p> */}
-          <button className="buy-button">Add to Cart</button>
+          <p><strong>Sold by:</strong> {product.company_name}</p>
+
+          <button
+            className="buy-button"
+            onClick={handleAddToCart}
+            disabled={remainingStock <= 0}
+          >
+            {remainingStock > 0 ? 'Add to Cart' : 'Out of Stock'}
+          </button>
         </div>
       </div>
     </div>

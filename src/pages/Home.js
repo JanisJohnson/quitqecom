@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useLocation } from 'react-router-dom';
+import ProductSlider from './Products/ProductSlider'; // ✅ Add this import
 import "../App.css";
 
 const Home = () => {
@@ -12,19 +13,15 @@ const Home = () => {
       try {
         const res = await fetch('/products.json');
         const data = await res.json();
-
         const category = new URLSearchParams(location.search).get('category');
-
         const filtered = category
           ? data.filter((p) => p.category === category)
           : data;
-
         setProducts(filtered);
       } catch (err) {
         console.error("Error fetching products:", err);
       }
     };
-
     fetchProducts();
   }, [location.search]);
 
@@ -32,6 +29,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
+      <ProductSlider /> {/* ✅ Slider above grid */}
       <h2>{category ? `${category} Products` : 'All Products'}</h2>
       <div className="product-grid">
         {products.map((product) => (

@@ -44,8 +44,8 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
-          {/* Cart first with badge */}
-          <div className="nav-link cart-link">
+          {/* ✅ Cart with navigation */}
+          <Link to="/cart" className="nav-link cart-link" style={{ textDecoration: "none" }}>
             <div className="cart-icon-wrapper">
               <MdShoppingCart className="cart-icon" />
               {cartItems.length > 0 && (
@@ -53,7 +53,7 @@ const Navbar = () => {
               )}
             </div>
             <span>Cart</span>
-          </div>
+          </Link>
 
           {/* Then Become a Seller and Login/Logout */}
           {user ? (

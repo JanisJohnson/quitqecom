@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from '../pages/Cart/CartContext'; // ✅ import useCart
+import { Link } from 'react-router-dom';
+import { useCart } from '../pages/Cart/CartContext';
+import { toast } from 'react-toastify'; // ✅ import toast
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
-  const navigate = useNavigate();
 
   const handleAddToCart = (e) => {
-    e.preventDefault(); // Prevent link
+    e.preventDefault();
     addToCart(product);
-    navigate("/cart"); // ✅ Go to cart
+    toast.success(`${product.name} added to cart!`); // ✅ toast here
   };
 
   return (
@@ -27,6 +27,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
-
-

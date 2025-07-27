@@ -8,7 +8,8 @@
     "category": "Mobile",
     "description": "A premium Android smartphone with a powerful camera and AMOLED display.",
     "sellerId": 101,
-    "company_name": "TechWorld"
+    "company_name": "TechWorld",
+    "stock": 50
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "category": "Fashion",
     "description": "Comfortable and stylish running shoes designed for everyday workouts.",
     "sellerId": 102,
-    "company_name": "StrideMart"
+    "company_name": "StrideMart",
+    "stock": 50
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "category": "Baby & Kids",
     "description": "Lightweight and foldable stroller with safety harness for babies.",
     "sellerId": 103,
-    "company_name": "KidzCare"
+    "company_name": "KidzCare",
+    "stock": 50
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "category": "Electronics",
     "description": "Wireless over-ear headphones with deep bass and noise cancellation.",
     "sellerId": 101,
-    "company_name": "TechWorld"
+    "company_name": "TechWorld",
+    "stock": 50
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "category": "Bags & Footwear",
     "description": "Stylish leather handbag perfect for office and casual outings.",
     "sellerId": 104,
-    "company_name": "StyleHub"
+    "company_name": "StyleHub",
+    "stock": 50
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "category": "Home & Furniture",
     "description": "Ergonomic wooden table ideal for studying or remote work.",
     "sellerId": 105,
-    "company_name": "FurniZone"
+    "company_name": "FurniZone",
+    "stock": 50
   },
   {
     "id": 7,
@@ -74,7 +80,8 @@
     "category": "Electronics",
     "description": "Feature-rich smart watch with fitness tracking and notifications.",
     "sellerId": 101,
-    "company_name": "TechWorld"
+    "company_name": "TechWorld",
+    "stock": 50
   },
   {
     "id": 8,
@@ -85,7 +92,8 @@
     "category": "Fashion",
     "description": "Durable sneakers with excellent grip and streetwear appeal.",
     "sellerId": 102,
-    "company_name": "StrideMart"
+    "company_name": "StrideMart",
+    "stock": 50
   },
   {
     "id": 9,
@@ -96,7 +104,8 @@
     "category": "Home & Furniture",
     "description": "Sharp stainless-steel knives perfect for daily kitchen tasks.",
     "sellerId": 106,
-    "company_name": "HomeEssence"
+    "company_name": "HomeEssence",
+    "stock": 50
   },
   {
     "id": 10,
@@ -107,7 +116,8 @@
     "category": "Bags & Footwear",
     "description": "Spacious backpack with multiple compartments for travel or school.",
     "sellerId": 104,
-    "company_name": "StyleHub"
+    "company_name": "StyleHub",
+    "stock": 50
   },
   {
     "id": 11,
@@ -118,7 +128,8 @@
     "category": "Electronics",
     "description": "Compact speaker with clear sound and long battery life.",
     "sellerId": 101,
-    "company_name": "TechWorld"
+    "company_name": "TechWorld",
+    "stock": 50
   },
   {
     "id": 12,
@@ -129,7 +140,8 @@
     "category": "Fashion",
     "description": "Elegant cotton kurti with traditional prints and comfortable fit.",
     "sellerId": 102,
-    "company_name": "StrideMart"
+    "company_name": "StrideMart",
+    "stock": 50
   },
   {
     "id": 13,
@@ -140,7 +152,8 @@
     "category": "Electronics",
     "description": "Powerful hair dryer with adjustable heat and speed settings.",
     "sellerId": 107,
-    "company_name": "BeautyBasics"
+    "company_name": "BeautyBasics",
+    "stock": 50
   },
   {
     "id": 14,
@@ -151,7 +164,7 @@
     "category": "Home & Furniture",
     "description": "Comfortable ergonomic chair suitable for long working hours.",
     "sellerId": 105,
-    "company_name": "FurniZone"
+    "company_name": "FurniZone",
+    "stock": 50
   }
-  
 ]

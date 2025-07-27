@@ -11,11 +11,20 @@ import RegisterPage from "./pages/Auth/Register";
 import LoginPage from "./pages/Auth/Login";
 import ProductDetail from "./pages/Products/ProductDetail";
 import Home from "./pages/Home";
-import Cart from "./pages/Cart/Cart"; // Make sure Cart.js exists
+import Cart from "./pages/Cart/Cart";
+import Checkout from "./pages/Checkout/Checkout";
+import OrderSummary from "./pages/Orders/OrdersSummary";
+
+
+
 
 // Context
-import { AuthProvider } from "./pages/context/AuthContext";
 import { CartProvider } from "./pages/Cart/CartContext";
+import { AuthProvider } from "./pages/context/AuthContext";
+
+// Toast
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Temporary Admin Dashboard
 const AdminDashboard = () => <h1>Welcome Admin!</h1>;
@@ -23,8 +32,8 @@ const AdminDashboard = () => <h1>Welcome Admin!</h1>;
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <CartProvider>
+      <CartProvider>
+        <AuthProvider>
           <div className="app-container">
             <Navbar />
 
@@ -35,6 +44,9 @@ function App() {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} /> {/* ✅ Added */}
+                <Route path="/order-summary" element={<OrderSummary />} />
+
 
                 <Route
                   path="/admin"
@@ -44,15 +56,16 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
-
                 <Route path="*" element={<div>404 Page Not Found</div>} />
               </Routes>
             </div>
 
             <Footer />
           </div>
-        </CartProvider>
-      </AuthProvider>
+
+          <ToastContainer position="bottom-right" autoClose={3000} />
+        </AuthProvider>
+      </CartProvider>
     </Router>
   );
 }
