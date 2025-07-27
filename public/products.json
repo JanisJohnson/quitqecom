@@ -1,0 +1,157 @@
+[
+  {
+    "id": 1,
+    "name": "Samsung Galaxy S22",
+    "price": 69999,
+    "discount": 20,
+    "imageUrl": "https://m.media-amazon.com/images/I/819HePm8FRL._AC_UY327_FMwebp_QL65_.jpg",
+    "category": "Mobile",
+    "description": "A premium Android smartphone with a powerful camera and AMOLED display.",
+    "sellerId": 101,
+    "company_name": "TechWorld"
+  },
+  {
+    "id": 2,
+    "name": "Nike Running Shoes",
+    "price": 2999,
+    "discount": 35,
+    "imageUrl": "https://m.media-amazon.com/images/I/71AF1j+tV6L._AC_UL480_FMwebp_QL65_.jpg",
+    "category": "Fashion",
+    "description": "Comfortable and stylish running shoes designed for everyday workouts.",
+    "sellerId": 102,
+    "company_name": "StrideMart"
+  },
+  {
+    "id": 3,
+    "name": "Baby Stroller",
+    "price": 4999,
+    "discount": 25,
+    "imageUrl": "https://m.media-amazon.com/images/I/41hCAiVMHoL._SX300_SY300_QL70_FMwebp_.jpg",
+    "category": "Baby & Kids",
+    "description": "Lightweight and foldable stroller with safety harness for babies.",
+    "sellerId": 103,
+    "company_name": "KidzCare"
+  },
+  {
+    "id": 4,
+    "name": "Sony Bluetooth Headphones",
+    "price": 7999,
+    "discount": 15,
+    "imageUrl": "https://m.media-amazon.com/images/I/41lArSiD5hL._AC_UY327_FMwebp_QL65_.jpg",
+    "category": "Electronics",
+    "description": "Wireless over-ear headphones with deep bass and noise cancellation.",
+    "sellerId": 101,
+    "company_name": "TechWorld"
+  },
+  {
+    "id": 5,
+    "name": "Leather Handbag",
+    "price": 1599,
+    "discount": 40,
+    "imageUrl": "https://m.media-amazon.com/images/I/611akdMn+nL._AC_UL480_FMwebp_QL65_.jpg",
+    "category": "Bags & Footwear",
+    "description": "Stylish leather handbag perfect for office and casual outings.",
+    "sellerId": 104,
+    "company_name": "StyleHub"
+  },
+  {
+    "id": 6,
+    "name": "Wooden Study Table",
+    "price": 4999,
+    "discount": 30,
+    "imageUrl": "https://m.media-amazon.com/images/I/61q2R8xK-PL._AC_UL480_FMwebp_QL65_.jpg",
+    "category": "Home & Furniture",
+    "description": "Ergonomic wooden table ideal for studying or remote work.",
+    "sellerId": 105,
+    "company_name": "FurniZone"
+  },
+  {
+    "id": 7,
+    "name": "Noise Smart Watch",
+    "price": 3499,
+    "discount": 28,
+    "imageUrl": "https://m.media-amazon.com/images/I/71RrL+FFu1L._AC_UY327_FMwebp_QL65_.jpg",
+    "category": "Electronics",
+    "description": "Feature-rich smart watch with fitness tracking and notifications.",
+    "sellerId": 101,
+    "company_name": "TechWorld"
+  },
+  {
+    "id": 8,
+    "name": "Adidas Sneakers",
+    "price": 7999,
+    "discount": 10,
+    "imageUrl": "https://m.media-amazon.com/images/I/41wZw39fRyL._AC_UL480_FMwebp_QL65_.jpg",
+    "category": "Fashion",
+    "description": "Durable sneakers with excellent grip and streetwear appeal.",
+    "sellerId": 102,
+    "company_name": "StrideMart"
+  },
+  {
+    "id": 9,
+    "name": "Kitchen Knife Set",
+    "price": 499,
+    "discount": 33,
+    "imageUrl": "https://m.media-amazon.com/images/I/31Irjmz6sHL._AC_UL480_FMwebp_QL65_.jpg",
+    "category": "Home & Furniture",
+    "description": "Sharp stainless-steel knives perfect for daily kitchen tasks.",
+    "sellerId": 106,
+    "company_name": "HomeEssence"
+  },
+  {
+    "id": 10,
+    "name": "Backpack",
+    "price": 2499,
+    "discount": 22,
+    "imageUrl": "https://m.media-amazon.com/images/I/71maWXZscfL._AC_UY327_FMwebp_QL65_.jpg",
+    "category": "Bags & Footwear",
+    "description": "Spacious backpack with multiple compartments for travel or school.",
+    "sellerId": 104,
+    "company_name": "StyleHub"
+  },
+  {
+    "id": 11,
+    "name": "Bluetooth Speaker",
+    "price": 1299,
+    "discount": 30,
+    "imageUrl": "https://m.media-amazon.com/images/I/61ygYGBZUBL._AC_UY327_FMwebp_QL65_.jpg",
+    "category": "Electronics",
+    "description": "Compact speaker with clear sound and long battery life.",
+    "sellerId": 101,
+    "company_name": "TechWorld"
+  },
+  {
+    "id": 12,
+    "name": "Cotton Kurti",
+    "price": 899,
+    "discount": 45,
+    "imageUrl": "https://m.media-amazon.com/images/I/61etVv4v8VL.jpg",
+    "category": "Fashion",
+    "description": "Elegant cotton kurti with traditional prints and comfortable fit.",
+    "sellerId": 102,
+    "company_name": "StrideMart"
+  },
+  {
+    "id": 13,
+    "name": "Hair Dryer",
+    "price": 2999,
+    "discount": 30,
+    "imageUrl": "https://m.media-amazon.com/images/I/51sFX0qGkKL._AC_UL480_FMwebp_QL65_.jpg",
+    "category": "Electronics",
+    "description": "Powerful hair dryer with adjustable heat and speed settings.",
+    "sellerId": 107,
+    "company_name": "BeautyBasics"
+  },
+  {
+    "id": 14,
+    "name": "Office Chair",
+    "price": 7999,
+    "discount": 18,
+    "imageUrl": "https://m.media-amazon.com/images/I/81g9pRpKJ6L._AC_UL480_FMwebp_QL65_.jpg",
+    "category": "Home & Furniture",
+    "description": "Comfortable ergonomic chair suitable for long working hours.",
+    "sellerId": 105,
+    "company_name": "FurniZone"
+  }
+  
+]
