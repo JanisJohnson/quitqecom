@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { MdShoppingCart } from "react-icons/md";
 import logo from "../assets/quitqlogo.png";
@@ -10,6 +11,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const { cartItems } = useCart();
+  const navigate = useNavigate(); // ← added this
 
   const categories = [
     "Electronics",
@@ -24,7 +26,6 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div className="navbar-left">
-          {/* RECTANGLE LOGO */}
           <div className="logo-rectangle">
             <img src={logo} alt="QuitQ Logo" className="logo-img-rectangle" />
           </div>
@@ -44,7 +45,6 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
-          {/* ✅ Cart with navigation */}
           <Link to="/cart" className="nav-link cart-link" style={{ textDecoration: "none" }}>
             <div className="cart-icon-wrapper">
               <MdShoppingCart className="cart-icon" />
@@ -55,7 +55,6 @@ const Navbar = () => {
             <span>Cart</span>
           </Link>
 
-          {/* Then Become a Seller and Login/Logout */}
           {user ? (
             <>
               <span className="nav-link">Hello, {user.name}</span>
@@ -65,12 +64,14 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <span className="nav-link">Become a Seller</span>
-              <Link
-                to="/login"
+              <span
                 className="nav-link"
-                style={{ textDecoration: "none" }}
+                onClick={() => navigate("/seller-login")}
+                style={{ cursor: "pointer" }}
               >
+                Become a Seller
+              </span>
+              <Link to="/login" className="nav-link" style={{ textDecoration: "none" }}>
                 Login
               </Link>
             </>

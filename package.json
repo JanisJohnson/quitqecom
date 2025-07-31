@@ -14,11 +14,14 @@
     "react-router-dom": "^7.7.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^11.0.5",
+    "recharts": "^3.1.0",
     "swiper": "^11.2.10",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "json-server --watch db.json --port 5000",
+    "dev": "concurrently \"npm start\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -40,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }
