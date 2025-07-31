@@ -1188,3 +1188,17 @@ html, body, #root {
 .home-btn:hover {
   background: #ffa000;
 }
+
+
+.my-orders-page {
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.order-card {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}

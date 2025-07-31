@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderSummary from "./pages/Orders/OrdersSummary";
+import MyOrders from './pages/Orders/MyOrders';
 
 
 
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} /> {/* ✅ Added */}
                 <Route path="/order-summary" element={<OrderSummary />} />
+                <Route path="/my-orders" element={<MyOrders />} />
 
 
                 <Route
