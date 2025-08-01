@@ -55,10 +55,16 @@ const Navbar = () => {
             <span>Cart</span>
           </Link>
 
-          {/* ✅ My Orders link */}
-          <Link to="/my-orders" className="nav-link" style={{ textDecoration: "none" }}>
-  My Orders
-</Link>
+          {/* ✅ Show My Orders only if logged in */}
+          {user && (
+            <Link
+              to="/my-orders"
+              className="nav-link"
+              style={{ textDecoration: "none" }}
+            >
+              My Orders
+            </Link>
+          )}
 
           {/* Then Become a Seller and Login/Logout */}
           {user ? (

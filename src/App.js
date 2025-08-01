@@ -16,6 +16,9 @@ import Checkout from "./pages/Checkout/Checkout";
 import OrderSummary from "./pages/Orders/OrdersSummary";
 import MyOrders from "./pages/Orders/MyOrders";
 import PaymentPage from "./pages/PaymentPage"; // ✅ Make sure this path exists
+import TrackOrder from './pages/TrackOrder';
+
+
 
 // Context
 import { CartProvider } from "./pages/Cart/CartContext";
@@ -47,6 +50,7 @@ function App() {
                 <Route path="/order-summary" element={<OrderSummary />} />
                 <Route path="/my-orders" element={<MyOrders />} />
                 <Route path="/payment" element={<PaymentPage />} />
+                <Route path="/track-order" element={<TrackOrder />} />
 
                 <Route
                   path="/admin"

@@ -1,26 +1,29 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const OrderSummary = () => {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const {
-    orderId,
-    products,
-    total,
-    discount,
-    finalAmount,
-    address,
-    paymentMethod,
-    date,
-  } = location.state || {};
+  const [latestOrder, setLatestOrder] = useState(null);
 
   useEffect(() => {
-    if (!location.state) {
-      navigate('/'); // Redirect if accessed directly
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    if (orders.length === 0) {
+      navigate('/'); // No orders, redirect
+    } else {
+      const recent = orders[orders.length - 1]; // latest order
+      setLatestOrder(recent);
     }
-  }, [location.state, navigate]);
+  }, [navigate]);
+
+  const copyOrderId = () => {
+    if (latestOrder?.id) {
+      navigator.clipboard.writeText(`#${latestOrder.id}`);
+      alert("Order ID copied to clipboard!");
+    }
+  };
+
+  if (!latestOrder) return null;
 
   return (
     <div className="order-summary-page">
@@ -34,26 +37,30 @@ const OrderSummary = () => {
         <div className="order-box">
           <h3>Order Info</h3>
           <ul>
-            <li><strong>Order ID:</strong> {orderId}</li>
-            <li><strong>Date:</strong> {date}</li>
-            <li><strong>Payment Method:</strong> {paymentMethod}</li>
+            <li>
+              <strong>Order ID:</strong> 
+              <span className="order-id"> #{latestOrder.id} </span>
+              <button className="copy-btn" onClick={copyOrderId}>Copy</button>
+            </li>
+            <li><strong>Date:</strong> {latestOrder.date}</li>
+            <li><strong>Payment Method:</strong> {latestOrder.paymentMethod}</li>
           </ul>
         </div>
 
         <div className="order-box">
           <h3>Shipping Address</h3>
           <ul>
-            <li>{address.name}</li>
-            <li>{address.street}, {address.city}</li>
-            <li>{address.state} - {address.pincode}</li>
-            <li>{address.phone}</li>
+            <li>{latestOrder.address.name}</li>
+            <li>{latestOrder.address.street}, {latestOrder.address.city}</li>
+            <li>{latestOrder.address.state} - {latestOrder.address.pincode}</li>
+            <li>{latestOrder.address.phone}</li>
           </ul>
         </div>
 
         <div className="order-box">
           <h3>Products</h3>
           <ul>
-            {products?.map((product, idx) => (
+            {latestOrder.products?.map((product, idx) => (
               <li key={idx}>{product.name} × {product.quantity}</li>
             ))}
           </ul>
@@ -62,16 +69,17 @@ const OrderSummary = () => {
         <div className="order-box">
           <h3>Price Summary</h3>
           <ul>
-            <li><strong>Total:</strong> ₹{total}</li>
-            <li><strong>Discount:</strong> -₹{discount}</li>
-            <li><strong>Final Amount:</strong> ₹{finalAmount}</li>
+            <li><strong>Total:</strong> ₹{latestOrder.total}</li>
+            <li><strong>Discount:</strong> -₹{latestOrder.discount}</li>
+            <li><strong>Final Amount:</strong> ₹{latestOrder.finalAmount}</li>
           </ul>
         </div>
       </div>
 
-      <button className="home-btn" onClick={() => navigate('/')}>
-        Go to Home
-      </button>
+      <div className="order-actions">
+        <button className="home-btn" onClick={() => navigate('/')}>Go to Home</button>
+        <button className="track-btn" onClick={() => navigate('/track-order')}>Track Order</button>
+      </div>
     </div>
   );
 };
