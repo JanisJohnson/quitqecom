@@ -94,6 +94,12 @@ const SellerDashboard = () => {
           <h1>Welcome, {seller.name}</h1>
         </div>
 
+
+        {/* Seller Profile */}
+        <div ref={profileRef} style={{ marginTop: "30px" }}>
+          <SellerProfileCard seller={seller} businessDetails={businessDetails} />
+        </div>
+
         {/* Stats Cards */}
         <div className="stats-grid">
           <div className="stat-card">
@@ -134,10 +140,6 @@ const SellerDashboard = () => {
           </div>
         </div>
 
-        {/* Seller Profile */}
-        <div ref={profileRef} style={{ marginTop: "30px" }}>
-          <SellerProfileCard seller={seller} businessDetails={businessDetails} />
-        </div>
 
         {/* Manage Products */}
         <div ref={addProductRef} style={{ marginTop: "30px" }}>

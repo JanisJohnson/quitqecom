@@ -38,11 +38,11 @@ const SellerProfileCard = ({ seller }) => {
             <span>{seller.email}</span>
           </div>
           <div className="profile-row">
-            <span className="label">📞 Phone:</span>
+            <span className="label"> Phone:</span>
             <span>{business.phone}</span>
           </div>
           <div className="profile-row">
-            <span className="label">📍 Address:</span>
+            <span className="label">Address:</span>
             <span>{business.address}</span>
           </div>
         </div>

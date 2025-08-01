@@ -75,12 +75,7 @@ function AppContent() {
 
           {/* === Admin Route === */}
           <Route
-            path="/admin"
-            element={
-              <ProtectedRoute allowedRoles={["admin"]}>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
+            path="/admin"element={<AdminDashboard />}
           />
 
           {/* === Seller Public Routes === */}

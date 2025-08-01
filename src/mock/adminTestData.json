@@ -1,56 +1,10 @@
 {
+  "sellers": [
+    { "name": "John Doe", "email": "john@example.com", "date": "Jan 1, 2024" },
+    { "name": "Jane Smith", "email": "jane@example.com", "date": "Jan 2, 2024" }
+  ],
   "users": [
-    {
-      "id": "u101",
-      "name": "Alice Johnson",
-      "email": "alice@gmail.com",
-      "role": "customer",
-      "status": "active"
-    },
-    {
-      "id": "u102",
-      "name": "Bob Singh",
-      "email": "bob@example.com",
-      "role": "seller",
-      "status": "pending"
-    }
-  ],
-
-  "products": [
-    {
-      "id": "p301",
-      "name": "Handmade Vase",
-      "price": 499,
-      "stock": 30,
-      "category": "Home Decor",
-      "sellerName": "PaletteCreation",
-      "status": "approved"
-    },
-    {
-      "id": "p302",
-      "name": "Mini Plant Pot",
-      "price": 199,
-      "stock": 120,
-      "category": "Home Decor",
-      "sellerName": "JaanBoutique",
-      "status": "pending"
-    }
-  ],
-
-  "orders": [
-    {
-      "id": "o701",
-      "buyer": "Alice Johnson",
-      "amount": 698,
-      "status": "delivered",
-      "date": "2025-07-22"
-    },
-    {
-      "id": "o702",
-      "buyer": "Charlie Ray",
-      "amount": 1200,
-      "status": "processing",
-      "date": "2025-07-23"
-    }
+    { "id": 1, "name": "User One" },
+    { "id": 2, "name": "User Two" }
   ]
 }
