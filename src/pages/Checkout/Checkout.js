@@ -18,16 +18,47 @@ const Checkout = () => {
   const finalAmount = total - discount;
 
   const handleConfirmOrder = () => {
-    navigate("/order-summary", {
-      state: {
-        paymentMethod,
-        products,
-        total,
-        discount,
-        finalAmount,
-        address,
-      },
+    const orderData = {
+      paymentMethod,
+      products,
+      total,
+      discount,
+      finalAmount,
+      address,
+    };
+
+    // ✅ Seller Notification (Grouped by Seller)
+    const sellerMap = {};
+    products.forEach((item) => {
+      if (!item.sellerId) return;
+      if (!sellerMap[item.sellerId]) {
+        sellerMap[item.sellerId] = {
+          company: item.company_name || "Unknown Seller",
+          items: [],
+        };
+      }
+      sellerMap[item.sellerId].items.push({
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+      });
     });
+
+    console.log("📢 Seller Notifications:");
+    Object.entries(sellerMap).forEach(([sellerId, data]) => {
+      console.log(`🛍️ Seller ID: ${sellerId} (${data.company})`);
+      data.items.forEach((product) => {
+        console.log(`   - ${product.name} x${product.quantity} @ ₹${product.price}`);
+      });
+      console.log("--------------------------------------------------");
+    });
+
+    // ✅ Redirect based on payment method
+    if (paymentMethod === "Card") {
+      navigate("/payment", { state: orderData });
+    } else {
+      navigate("/order-summary", { state: orderData });
+    }
   };
 
   return (
@@ -101,6 +132,7 @@ const Checkout = () => {
           </ul>
         </div>
 
+        {/* Final Amount + Button */}
         <div className="checkout-right">
           <div className="summary-box">
             <p>Total MRP: ₹{total}</p>

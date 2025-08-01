@@ -14,10 +14,8 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderSummary from "./pages/Orders/OrdersSummary";
-import MyOrders from './pages/Orders/MyOrders';
-
-
-
+import MyOrders from "./pages/Orders/MyOrders";
+import PaymentPage from "./pages/PaymentPage"; // ✅ Make sure this path exists
 
 // Context
 import { CartProvider } from "./pages/Cart/CartContext";
@@ -45,10 +43,10 @@ function App() {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/checkout" element={<Checkout />} /> {/* ✅ Added */}
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/order-summary" element={<OrderSummary />} />
                 <Route path="/my-orders" element={<MyOrders />} />
-
+                <Route path="/payment" element={<PaymentPage />} />
 
                 <Route
                   path="/admin"
@@ -58,6 +56,7 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+
                 <Route path="*" element={<div>404 Page Not Found</div>} />
               </Routes>
             </div>

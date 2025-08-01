@@ -1,4 +1,3 @@
-// src/pages/context/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
     setToken("");
     setUser(null);
-    navigate("/"); // 👈 go to home page after logout
+    navigate("/login"); // 👈 redirect to login page after logout
   };
 
   return (
