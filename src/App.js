@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
+import "./Admin.css";
+import "./Seller.css"
+
 
 // === User Components ===
 import Navbar from "./components/Navbar";
@@ -28,6 +31,9 @@ import ProfilePage from "./pages/Seller/ProfilePage";
 
 // === Admin Page ===
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import KYCApproval from './pages/Admin/KYCApproval';
+
+
 
 // === Context Providers ===
 import { CartProvider } from "./pages/Cart/CartContext";
@@ -57,7 +63,7 @@ function App() {
 function AppContent() {
   const location = useLocation();
   const isSellerRoute = location.pathname.startsWith("/seller");
-
+   const isAdminRoute = location.pathname.startsWith("/admin");
   return (
     <div className="app-container">
       <Navbar />
@@ -77,7 +83,7 @@ function AppContent() {
           <Route
             path="/admin"element={<AdminDashboard />}
           />
-
+          <Route path="/admin/kyc" element={<KYCApproval />} />
           {/* === Seller Public Routes === */}
           <Route path="/seller-login" element={<SellerLogin />} />
           <Route path="/buisness-register" element={<BuisnessRegistration />} />
@@ -99,8 +105,7 @@ function AppContent() {
         </Routes>
       </div>
 
-      {/* ✅ Hide footer on Seller Dashboard */}
-      {!isSellerRoute && <Footer />}
+      {!isSellerRoute && !isAdminRoute && <Footer />}
     </div>
   );
 }

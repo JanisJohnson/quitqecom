@@ -431,5 +431,12 @@
       "company_name": "Jessica's"
     }
   ],
-  "orders": []
+  "orders": [{
+  "id": 1,
+  "date": "2025-07-28",
+  "paymentMethod": "UPI",
+  "address": "123 Main Street",
+  "sellerId": "2"
+}
+]
 }

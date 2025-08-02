@@ -143,7 +143,7 @@ const SellerDashboard = () => {
 
         {/* Manage Products */}
         <div ref={addProductRef} style={{ marginTop: "30px" }}>
-          <h2>Manage Products</h2>
+        
           <AddProductForm
             sellerId={seller.id}
             companyName={businessDetails?.businessName || seller.company_name}
@@ -153,7 +153,7 @@ const SellerDashboard = () => {
 
         {/* Recent Orders */}
         <div ref={viewOrdersRef} className="orders-section">
-          <h2>Recent Orders</h2>
+          
           <OrderList sellerId={seller.id} />
         </div>
       </div>
