@@ -466,6 +466,42 @@ body {
   }
 }
 
+/* Footer Link Styling */
+.footer-link {
+  text-decoration: none;
+  color: #333; /* Same as normal text color */
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ff9800; /* Amber on hover */
+}
+
+.footer-content-page {
+  max-width: 100%;
+  padding: 40px 80px;
+  background-color: transparent;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+.footer-content-page h2 {
+  font-size: 30px;
+  font-weight: 650;
+  margin-bottom: 20px;
+  color: #111;
+  /* border-left: 4px solid #00bcd4; */ /* Remove this line */
+  /* padding-left: 12px; */             /* Optional: Remove this too */
+}
+
+.footer-content-page p {
+  font-size: 22px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+
 /* ==================== Auth (Login/Register) Page ==================== */
 .auth-page {
   display: flex;
@@ -1272,7 +1308,7 @@ body {
 .order-summary-page {
   font-family: 'Poppins', sans-serif;
   padding: 40px;
-  background: #f2fefd;
+  background: white;
 }
 
 .confirmation {
@@ -1326,7 +1362,7 @@ body {
 }
 
 .home-btn:hover {
-  background: #ffa000;
+  background: #ffc107;;
 }
 
 
@@ -1334,7 +1370,7 @@ body {
 .track-btn {
   margin-top: 30px;
   padding: 10px 20px;
-  background: #ffb300; /* Amber */
+  background: ffc107; /* Amber */
   color: white;
   border: none;
   font-weight: bold;
@@ -1347,7 +1383,7 @@ body {
 }
 
 .track-btn:hover {
-  background: #ffa000;
+  background: ffc107;
 }
 
 
@@ -1479,4 +1515,42 @@ body {
   margin-bottom: 20px;
   width: auto;
   padding: 10px 20px;
+}
+.banner-slider-wrapper {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.banner-slide {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.banner-slider-image {
+  width: 100vw;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.slick-slide > div,
+.carousel .slide {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .banner-slider-image {
+    width: 100vw;
+    height: auto;
+  }
 }

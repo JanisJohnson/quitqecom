@@ -15,10 +15,11 @@ import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderSummary from "./pages/Orders/OrdersSummary";
 import MyOrders from "./pages/Orders/MyOrders";
-import PaymentPage from "./pages/PaymentPage"; // ✅ Make sure this path exists
-import TrackOrder from './pages/TrackOrder';
+import PaymentPage from "./pages/PaymentPage";
+import TrackOrder from "./pages/TrackOrder";
 
-
+// Footer Pages (single component)
+import FooterContent from "./pages/FooterContent";
 
 // Context
 import { CartProvider } from "./pages/Cart/CartContext";
@@ -27,9 +28,6 @@ import { AuthProvider } from "./pages/context/AuthContext";
 // Toast
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-// Temporary Admin Dashboard
-const AdminDashboard = () => <h1>Welcome Admin!</h1>;
 
 function App() {
   return (
@@ -41,6 +39,7 @@ function App() {
 
             <div className="content">
               <Routes>
+                {/* Core Pages */}
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
@@ -52,15 +51,32 @@ function App() {
                 <Route path="/payment" element={<PaymentPage />} />
                 <Route path="/track-order" element={<TrackOrder />} />
 
+                {/* Admin Route */}
                 <Route
                   path="/admin"
                   element={
                     <ProtectedRoute allowedRoles={["admin"]}>
-                      <AdminDashboard />
+                      <h1>Welcome Admin!</h1>
                     </ProtectedRoute>
                   }
                 />
 
+                {/* === Footer Pages === */}
+                <Route path="/about-us" element={<FooterContent />} />
+                <Route path="/contact-us" element={<FooterContent />} />
+                <Route path="/careers" element={<FooterContent />} />
+                <Route path="/quitq-stories" element={<FooterContent />} />
+                <Route path="/payments" element={<FooterContent />} />
+                <Route path="/shipping" element={<FooterContent />} />
+                <Route path="/returns" element={<FooterContent />} />
+                <Route path="/faq" element={<FooterContent />} />
+                <Route path="/return-policy" element={<FooterContent />} />
+                <Route path="/terms-of-use" element={<FooterContent />} />
+                <Route path="/security" element={<FooterContent />} />
+                <Route path="/privacy" element={<FooterContent />} />
+                {/* === End Footer Pages === */}
+
+                {/* 404 Fallback */}
                 <Route path="*" element={<div>404 Page Not Found</div>} />
               </Routes>
             </div>

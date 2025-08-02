@@ -1,8 +1,9 @@
 // src/components/Footer.js
 import React from "react";
+import { Link } from "react-router-dom"; // Link for routing
 import "../App.css";
 import logo from "../assets/quitqlogo.png";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -20,36 +21,35 @@ const Footer = () => {
             <FaFacebookF className="social-icon" />
             <FaTwitter className="social-icon" />
             <FaInstagram className="social-icon" />
-            <FaLinkedinIn className="social-icon" />
           </div>
         </div>
 
-        {/* Other Columns */}
+        {/* Footer Links */}
         <div className="footer-col">
           <h4>About QuitQ</h4>
           <ul>
-            <li>Contact Us</li>
-            <li>About Us</li>
-            <li>Careers</li>
-            <li>QuitQ Stories</li>
+            <li><Link to="/contact-us" className="footer-link">Contact Us</Link></li>
+            <li><Link to="/about-us" className="footer-link">About Us</Link></li>
+            <li><Link to="/careers" className="footer-link">Careers</Link></li>
+            <li><Link to="/quitq-stories" className="footer-link">QuitQ Stories</Link></li>
           </ul>
         </div>
         <div className="footer-col">
           <h4>Help</h4>
           <ul>
-            <li>Payments</li>
-            <li>Shipping</li>
-            <li>Returns</li>
-            <li>FAQ</li>
+            <li><Link to="/payments" className="footer-link">Payments</Link></li>
+            <li><Link to="/shipping" className="footer-link">Shipping</Link></li>
+            <li><Link to="/returns" className="footer-link">Returns</Link></li>
+            <li><Link to="/faq" className="footer-link">FAQ</Link></li>
           </ul>
         </div>
         <div className="footer-col">
           <h4>Policy</h4>
           <ul>
-            <li>Return Policy</li>
-            <li>Terms of Use</li>
-            <li>Security</li>
-            <li>Privacy</li>
+            <li><Link to="/return-policy" className="footer-link">Return Policy</Link></li>
+            <li><Link to="/terms-of-use" className="footer-link">Terms of Use</Link></li>
+            <li><Link to="/security" className="footer-link">Security</Link></li>
+            <li><Link to="/privacy" className="footer-link">Privacy</Link></li>
           </ul>
         </div>
       </div>

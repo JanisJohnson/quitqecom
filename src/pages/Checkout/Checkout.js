@@ -25,6 +25,11 @@ const Checkout = () => {
   const discount = Math.floor(total * 0.1);
   const finalAmount = total - discount;
 
+  const generateOrderId = () => {
+    const random = Math.floor(1000 + Math.random() * 9000);
+    return `#${random}`;
+  };
+
   const validateForm = () => {
     const newErrors = {};
     const { fullName, phone, street, city, state, pincode, country } = address;
@@ -53,7 +58,11 @@ const Checkout = () => {
   const handleConfirmOrder = () => {
     if (!validateForm()) return;
 
-    const orderData = {
+    const orderId = generateOrderId();
+
+    const newOrder = {
+      id: orderId,
+      date: new Date().toLocaleDateString(),
       paymentMethod,
       products,
       total,
@@ -62,12 +71,19 @@ const Checkout = () => {
       address,
     };
 
+    // Store in localStorage
+    const prevOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    const updatedOrders = [...prevOrders, newOrder];
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+
+    // Also store address separately if needed
     localStorage.setItem("shippingAddress", JSON.stringify(address));
 
+    // Navigate
     if (paymentMethod === "Card") {
-      navigate("/payment", { state: orderData });
+      navigate("/payment", { state: newOrder });
     } else {
-      navigate("/order-summary", { state: orderData });
+      navigate("/order-summary", { state: newOrder });
     }
   };
 
@@ -84,67 +100,25 @@ const Checkout = () => {
         <div className="checkout-left">
           <h3>Delivery Address</h3>
           <div className="checkout-form-group">
-            <input
-              type="text"
-              name="fullName"
-              placeholder="Full Name"
-              value={address.fullName}
-              onChange={handleInputChange}
-            />
+            <input type="text" name="fullName" placeholder="Full Name" value={address.fullName} onChange={handleInputChange} />
             {errors.fullName && <p className="error-text">{errors.fullName}</p>}
 
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone Number"
-              value={address.phone}
-              onChange={handleInputChange}
-            />
+            <input type="text" name="phone" placeholder="Phone Number" value={address.phone} onChange={handleInputChange} />
             {errors.phone && <p className="error-text">{errors.phone}</p>}
 
-            <input
-              type="text"
-              name="street"
-              placeholder="Street"
-              value={address.street}
-              onChange={handleInputChange}
-            />
+            <input type="text" name="street" placeholder="Street" value={address.street} onChange={handleInputChange} />
             {errors.street && <p className="error-text">{errors.street}</p>}
 
-            <input
-              type="text"
-              name="city"
-              placeholder="City"
-              value={address.city}
-              onChange={handleInputChange}
-            />
+            <input type="text" name="city" placeholder="City" value={address.city} onChange={handleInputChange} />
             {errors.city && <p className="error-text">{errors.city}</p>}
 
-            <input
-              type="text"
-              name="state"
-              placeholder="State"
-              value={address.state}
-              onChange={handleInputChange}
-            />
+            <input type="text" name="state" placeholder="State" value={address.state} onChange={handleInputChange} />
             {errors.state && <p className="error-text">{errors.state}</p>}
 
-            <input
-              type="text"
-              name="pincode"
-              placeholder="Pincode"
-              value={address.pincode}
-              onChange={handleInputChange}
-            />
+            <input type="text" name="pincode" placeholder="Pincode" value={address.pincode} onChange={handleInputChange} />
             {errors.pincode && <p className="error-text">{errors.pincode}</p>}
 
-            <input
-              type="text"
-              name="country"
-              placeholder="Country"
-              value={address.country}
-              onChange={handleInputChange}
-            />
+            <input type="text" name="country" placeholder="Country" value={address.country} onChange={handleInputChange} />
             {errors.country && <p className="error-text">{errors.country}</p>}
           </div>
 
@@ -171,31 +145,13 @@ const Checkout = () => {
           <h3>Payment Method</h3>
           <div className="payment-options">
             <label>
-              <input
-                type="radio"
-                name="payment"
-                value="COD"
-                checked={paymentMethod === "COD"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              /> Cash on Delivery
+              <input type="radio" name="payment" value="COD" checked={paymentMethod === "COD"} onChange={(e) => setPaymentMethod(e.target.value)} /> Cash on Delivery
             </label>
             <label>
-              <input
-                type="radio"
-                name="payment"
-                value="UPI"
-                checked={paymentMethod === "UPI"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              /> UPI
+              <input type="radio" name="payment" value="UPI" checked={paymentMethod === "UPI"} onChange={(e) => setPaymentMethod(e.target.value)} /> UPI
             </label>
             <label>
-              <input
-                type="radio"
-                name="payment"
-                value="Card"
-                checked={paymentMethod === "Card"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              /> Card
+              <input type="radio" name="payment" value="Card" checked={paymentMethod === "Card"} onChange={(e) => setPaymentMethod(e.target.value)} /> Card
             </label>
           </div>
 
