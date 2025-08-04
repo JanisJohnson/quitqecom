@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../pages/Cart/CartContext';
-import { toast } from 'react-toastify'; // ✅ import toast
+import { toast } from 'react-toastify'; 
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
 
-  const handleAddToCart = (e) => {
-    e.preventDefault();
+  const handleAddToCart = (event) => {
+    event.preventDefault();
     addToCart(product);
-    toast.success(`${product.name} added to cart!`); // ✅ toast here
+    toast.success(`${product.name} added to cart!`); 
   };
 
   return (

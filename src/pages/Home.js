@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useLocation } from 'react-router-dom';
-import ProductSlider from './Products/ProductSlider'; // ✅ Add this import
+import BannerSlider from '../components/BannerSlider';
 import "../App.css";
 
 const Home = () => {
@@ -28,13 +28,20 @@ const Home = () => {
   const category = new URLSearchParams(location.search).get('category');
 
   return (
-    <div className="home-container">
-      <ProductSlider /> {/* ✅ Slider above grid */}
-      <h2>{category ? `${category} Products` : 'All Products'}</h2>
-      <div className="product-grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+    <div>
+      
+      <div className="carousel-wrapper">
+        <BannerSlider />
+      </div>
+
+      
+      <div className="home-container">
+        <h2>{category ? `${category} Products` : 'All Products'}</h2>
+        <div className="product-grid">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
     </div>
   );

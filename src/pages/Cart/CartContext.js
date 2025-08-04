@@ -1,4 +1,3 @@
-// src/pages/Cart/CartContext.js
 import { createContext, useContext, useState } from "react";
 
 const CartContext = createContext();

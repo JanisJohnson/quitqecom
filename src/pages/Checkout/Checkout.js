@@ -1,4 +1,3 @@
-// src/pages/Checkout/Checkout.js
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../Cart/CartContext";
@@ -9,83 +8,153 @@ const Checkout = () => {
   const { cartItems } = useCart();
 
   const [paymentMethod, setPaymentMethod] = useState("COD");
-  const [address, setAddress] = useState("123 Main Street, Chennai, India");
+  const [address, setAddress] = useState({
+    fullName: "",
+    phone: "",
+    street: "",
+    city: "",
+    state: "",
+    pincode: "",
+    country: "",
+  });
+
+  const [errors, setErrors] = useState({});
 
   const products = location.state?.product ? [location.state.product] : cartItems;
-
   const total = products.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = Math.floor(total * 0.1);
   const finalAmount = total - discount;
 
+  const generateOrderId = () => {
+    const random = Math.floor(1000 + Math.random() * 9000);
+    return `#${random}`;
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    const { fullName, phone, street, city, state, pincode, country } = address;
+
+    if (!fullName.trim()) newErrors.fullName = "Full Name is required.";
+    else if (fullName.trim().length < 3) newErrors.fullName = "Minimum 3 characters required.";
+
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phone.trim()) newErrors.phone = "Phone number is required.";
+    else if (!phoneRegex.test(phone)) newErrors.phone = "Invalid phone number.";
+
+    if (!street.trim()) newErrors.street = "Street is required.";
+    if (!city.trim()) newErrors.city = "City is required.";
+    if (!state.trim()) newErrors.state = "State is required.";
+
+    const pincodeRegex = /^\d{6}$/;
+    if (!pincode.trim()) newErrors.pincode = "Pincode is required.";
+    else if (!pincodeRegex.test(pincode)) newErrors.pincode = "Invalid pincode.";
+
+    if (!country.trim()) newErrors.country = "Country is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleConfirmOrder = () => {
-    navigate("/order-summary", {
-      state: {
-        paymentMethod,
-        products,
-        total,
-        discount,
-        finalAmount,
-        address,
-      },
-    });
+    if (!validateForm()) return;
+
+    const orderId = generateOrderId();
+
+    const newOrder = {
+      id: orderId,
+      date: new Date().toLocaleDateString(),
+      paymentMethod,
+      products,
+      total,
+      discount,
+      finalAmount,
+      address,
+    };
+
+   
+    const prevOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    const updatedOrders = [...prevOrders, newOrder];
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+
+    
+    localStorage.setItem("shippingAddress", JSON.stringify(address));
+
+    
+    if (paymentMethod === "Card") {
+      navigate("/payment", { state: newOrder });
+    } else {
+      navigate("/order-summary", { state: newOrder });
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setAddress((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   return (
     <div className="checkout-page">
       <h2>Checkout</h2>
-
       <div className="checkout-content">
         <div className="checkout-left">
-          {/* Address Section */}
-          <div className="address-section">
-            <h3>Delivery Address</h3>
-            <textarea
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              rows="3"
-            />
-            <div className="address-actions">
-              <button onClick={() => navigate("/cart")}>Go Back to Cart</button>
-              <button onClick={() => setAddress("")}>Change Address</button>
-            </div>
+          <h3>Delivery Address</h3>
+          <div className="checkout-form-group">
+            <input type="text" name="fullName" placeholder="Full Name" value={address.fullName} onChange={handleInputChange} />
+            {errors.fullName && <p className="error-text">{errors.fullName}</p>}
+
+            <input type="text" name="phone" placeholder="Phone Number" value={address.phone} onChange={handleInputChange} />
+            {errors.phone && <p className="error-text">{errors.phone}</p>}
+
+            <input type="text" name="street" placeholder="Street" value={address.street} onChange={handleInputChange} />
+            {errors.street && <p className="error-text">{errors.street}</p>}
+
+            <input type="text" name="city" placeholder="City" value={address.city} onChange={handleInputChange} />
+            {errors.city && <p className="error-text">{errors.city}</p>}
+
+            <input type="text" name="state" placeholder="State" value={address.state} onChange={handleInputChange} />
+            {errors.state && <p className="error-text">{errors.state}</p>}
+
+            <input type="text" name="pincode" placeholder="Pincode" value={address.pincode} onChange={handleInputChange} />
+            {errors.pincode && <p className="error-text">{errors.pincode}</p>}
+
+            <input type="text" name="country" placeholder="Country" value={address.country} onChange={handleInputChange} />
+            {errors.country && <p className="error-text">{errors.country}</p>}
           </div>
 
-          {/* Payment Section */}
+          <div className="address-actions">
+            <button onClick={() => navigate("/cart")}>Go Back to Cart</button>
+            <button
+              onClick={() => {
+                setAddress({
+                  fullName: "",
+                  phone: "",
+                  street: "",
+                  city: "",
+                  state: "",
+                  pincode: "",
+                  country: "",
+                });
+                setErrors({});
+              }}
+            >
+              Clear Address
+            </button>
+          </div>
+
           <h3>Payment Method</h3>
           <div className="payment-options">
             <label>
-              <input
-                type="radio"
-                name="payment"
-                value="COD"
-                checked={paymentMethod === "COD"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Cash on Delivery
+              <input type="radio" name="payment" value="COD" checked={paymentMethod === "COD"} onChange={(e) => setPaymentMethod(e.target.value)} /> Cash on Delivery
             </label>
             <label>
-              <input
-                type="radio"
-                name="payment"
-                value="UPI"
-                checked={paymentMethod === "UPI"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              UPI
+              <input type="radio" name="payment" value="UPI" checked={paymentMethod === "UPI"} onChange={(e) => setPaymentMethod(e.target.value)} /> UPI
             </label>
             <label>
-              <input
-                type="radio"
-                name="payment"
-                value="Card"
-                checked={paymentMethod === "Card"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Card
+              <input type="radio" name="payment" value="Card" checked={paymentMethod === "Card"} onChange={(e) => setPaymentMethod(e.target.value)} /> Card
             </label>
           </div>
 
-          {/* Order Summary */}
           <h3>Order Summary</h3>
           <ul className="checkout-products">
             {products.map((item) => (
@@ -103,13 +172,12 @@ const Checkout = () => {
 
         <div className="checkout-right">
           <div className="summary-box">
-            <p>Total MRP: ₹{total}</p>
-            <p>Discount: ₹{discount}</p>
+            <h4>Price Details</h4>
+            <p><span>Total MRP:</span> <span>₹{total}</span></p>
+            <p><span>Discount:</span> <span>₹{discount}</span></p>
             <hr />
-            <p><strong>Final Amount: ₹{finalAmount}</strong></p>
-            <button className="confirm-btn" onClick={handleConfirmOrder}>
-              Confirm Order
-            </button>
+            <p><strong>Final Amount:</strong> <strong>₹{finalAmount}</strong></p>
+            <button className="confirm-btn" onClick={handleConfirmOrder}>Confirm Order</button>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const { cartItems } = useCart();
-  const navigate = useNavigate(); // ← added this
+  const navigate = useNavigate();
 
   const categories = [
     "Electronics",
@@ -54,6 +54,16 @@ const Navbar = () => {
             </div>
             <span>Cart</span>
           </Link>
+
+          {user && (
+            <Link
+              to="/my-orders"
+              className="nav-link"
+              style={{ textDecoration: "none" }}
+            >
+              My Orders
+            </Link>
+          )}
 
           {user ? (
             <>

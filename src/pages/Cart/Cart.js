@@ -1,9 +1,10 @@
 import React from "react";
 import { useCart } from "./CartContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Cart = () => {
-  const { cartItems, addToCart, removeFromCart, updateCartItemQuantity, clearCart } = useCart();
+  const { cartItems, removeFromCart, updateCartItemQuantity, clearCart } = useCart();
   const navigate = useNavigate();
 
   const total = cartItems.reduce(
@@ -16,6 +17,10 @@ const Cart = () => {
   };
 
   const handlePlaceOrder = () => {
+    if (cartItems.length === 0) {
+      toast.warning("🛒 Your cart is empty!");
+      return;
+    }
     navigate("/checkout");
   };
 
@@ -59,31 +64,20 @@ const Cart = () => {
                     </button>
                   </div>
 
-                  {item.stock > 0 ? (
-                    <div className="action-buttons">
-                      <button className="buy-btn" onClick={() => handleBuyNow(item)}>
-                        Buy Now
-                      </button>
-                      <button
-                        className="remove-btn"
-                        onClick={() => removeFromCart(item.id)}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="action-buttons">
-                      <button className="out-btn" disabled>
-                        Out of Stock
-                      </button>
-                      <button
-                        className="remove-btn"
-                        onClick={() => removeFromCart(item.id)}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  )}
+                  <div className="action-buttons">
+                    <button className="buy-btn" onClick={() => handleBuyNow(item)}>
+                      Buy Now
+                    </button>
+                    <button
+                      className="remove-btn"
+                      onClick={() => {
+                        removeFromCart(item.id);
+                        toast.info(`${item.name} removed from cart`);
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               </li>
             ))}
@@ -94,7 +88,13 @@ const Cart = () => {
               Total ({cartItems.length} items): <strong>₹{total}</strong>
             </p>
             <div className="summary-buttons">
-              <button className="clear-btn" onClick={clearCart}>
+              <button
+                className="clear-btn"
+                onClick={() => {
+                  clearCart();
+                  toast.info("🧹 Cart cleared!");
+                }}
+              >
                 Clear Cart
               </button>
               <button className="checkout-btn" onClick={handlePlaceOrder}>

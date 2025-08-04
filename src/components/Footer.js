@@ -1,14 +1,13 @@
-// src/components/Footer.js
 import React from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 import logo from "../assets/quitqlogo.png";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-columns">
-        {/* Left-aligned Logo and Description */}
         <div className="footer-left">
           <div className="footer-logo">
             <img src={logo} alt="QuitQ Logo" />
@@ -17,39 +16,59 @@ const Footer = () => {
             Your one-stop destination for unique finds, daily deals, and unbeatable value. Discover more with QuitQ.
           </p>
           <div className="footer-social-icons">
-            <FaFacebookF className="social-icon" />
-            <FaTwitter className="social-icon" />
-            <FaInstagram className="social-icon" />
-            <FaLinkedinIn className="social-icon" />
+            <a
+              href="https://www.facebook.com/quitqstore"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <FaFacebookF className="social-icon" />
+            </a>
+            <a
+              href="https://twitter.com/quitqtweets"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <FaTwitter className="social-icon" />
+            </a>
+            <a
+              href="https://www.instagram.com/quitqofficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <FaInstagram className="social-icon" />
+            </a>
           </div>
         </div>
 
-        {/* Other Columns */}
+        {/* Footer Links */}
         <div className="footer-col">
           <h4>About QuitQ</h4>
           <ul>
-            <li>Contact Us</li>
-            <li>About Us</li>
-            <li>Careers</li>
-            <li>QuitQ Stories</li>
+            <li><Link to="/contact-us" className="footer-link">Contact Us</Link></li>
+            <li><Link to="/about-us" className="footer-link">About Us</Link></li>
+            <li><Link to="/careers" className="footer-link">Careers</Link></li>
+            <li><Link to="/quitq-stories" className="footer-link">QuitQ Stories</Link></li>
           </ul>
         </div>
         <div className="footer-col">
           <h4>Help</h4>
           <ul>
-            <li>Payments</li>
-            <li>Shipping</li>
-            <li>Returns</li>
-            <li>FAQ</li>
+            <li><Link to="/payments" className="footer-link">Payments</Link></li>
+            <li><Link to="/shipping" className="footer-link">Shipping</Link></li>
+            <li><Link to="/returns" className="footer-link">Returns</Link></li>
+            <li><Link to="/faq" className="footer-link">FAQ</Link></li>
           </ul>
         </div>
         <div className="footer-col">
           <h4>Policy</h4>
           <ul>
-            <li>Return Policy</li>
-            <li>Terms of Use</li>
-            <li>Security</li>
-            <li>Privacy</li>
+            <li><Link to="/return-policy" className="footer-link">Return Policy</Link></li>
+            <li><Link to="/terms-of-use" className="footer-link">Terms of Use</Link></li>
+            <li><Link to="/security" className="footer-link">Security</Link></li>
+            <li><Link to="/privacy" className="footer-link">Privacy</Link></li>
           </ul>
         </div>
       </div>

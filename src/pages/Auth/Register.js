@@ -6,10 +6,8 @@ const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // ✅ Regex-based validations
   const isValidName = (name) => {
-    return /^[A-Za-z\s]+$/.test(name.trim()); // only letters and spaces
+    return /^[A-Za-z\s]+$/.test(name.trim()); 
   };
 
   const isValidEmail = (email) => {
@@ -38,7 +36,7 @@ const RegisterPage = () => {
       return;
     }
 
-    // ✅ Passed all checks
+    
     console.log("Registered with:", name, email, password);
     alert("Registration successful (demo)");
   };
@@ -46,19 +44,19 @@ const RegisterPage = () => {
   return (
     <div className="auth-page">
       <div className="auth-container">
-        {/* Greeting */}
+        
         <div className="auth-greeting">
           <h3>Welcome to QuitQ!</h3>
           <p>Create your account to explore unique finds and great deals.</p>
         </div>
 
-        {/* Header + Login Switch */}
+        
         <div className="auth-header">
           <h2>Register</h2>
           <Link to="/login" className="auth-switch">Login</Link>
         </div>
 
-        {/* Form */}
+        
         <form className="auth-form" onSubmit={handleRegister}>
           <label>Full Name</label>
           <input
@@ -89,7 +87,7 @@ const RegisterPage = () => {
 
           <button type="submit" className="auth-button">Register</button>
 
-          {/* Legal Text */}
+          
           <p className="auth-disclaimer">
             By clicking <strong>Register</strong>, you agree to QuitQ’s
             <a href="/terms" target="_blank" rel="noopener noreferrer"> Terms of Use </a>
