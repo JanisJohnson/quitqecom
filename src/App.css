@@ -261,6 +261,7 @@ body {
   background-color: #e6ac00;
 }
 
+
 /* ==================== Slider Section ==================== */
 .slider-section {
   margin: 20px 0;
@@ -1552,5 +1553,130 @@ body {
   .banner-slider-image {
     width: 100vw;
     height: auto;
+  }
+}
+
+/* ----------- Default (Desktop) ----------- */
+body {
+  font-size: 16px;
+}
+
+/* Ensure all images are responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ----------- Tablet Screens (≤1024px) ----------- */
+@media (max-width: 1024px) {
+  .container,
+  .page,
+  .content,
+  .section {
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+
+  .navbar,
+  .navbar-left,
+  .navbar-right,
+  .navbar-search,
+  .footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 70%;
+  }
+}
+
+/* ----------- Mobile Screens (≤768px) ----------- */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  /* Navbar styling */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .logo-img-rectangle {
+    width: 120px;
+    margin-bottom: 10px;
+  }
+
+  /* Search Bar */
+  .navbar-search {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .search-button {
+    padding: 8px 12px;
+  }
+
+  /* Navbar right items (Cart, Login, etc.) */
+  .navbar-right {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .navbar-right a,
+  .navbar-right span {
+    margin: 4px 0;
+  }
+
+  /* Navigation links (if used separately) */
+  .nav-link,
+  .cart-link {
+    font-size: 14px;
+    margin: 6px 0;
+  }
+
+  /* Category menu bar */
+  .category-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .category-bar div {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* Layout containers */
+  .product-card,
+  .order-summary,
+  .form-container,
+  .cart-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Banner images */
+  .banner img {
+    width: 100%;
+    height: auto;
+  }
+
+  .product-card {
+    width: 90%;
+    margin: 10px auto;
   }
 }
