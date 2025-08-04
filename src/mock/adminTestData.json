@@ -1,0 +1,66 @@
+{
+  "sellers": [
+    {
+      "id": "8f71",
+      "name": "Jessica",
+      "email": "jessica@example.com",
+      "password": "123456",
+      "company_name": "Jessica's",
+      "products": []
+    },
+    {
+      "id": "6988",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "john123",
+      "company_name": "John's Supplies",
+      "products": []
+    },
+    {
+      "id": "7e1b",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "jane123",
+      "company_name": "Jane's Goods",
+      "products": []
+    }
+  ],
+  "businessDetails": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "businessName": "Doe Electronics",
+      "gstNumber": "GSTIN1234ABC",
+      "kycStatus": "rejected"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "businessName": "Smith Ventures",
+      "gstNumber": "GSTIN5678XYZ",
+      "kycStatus": "approved"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "User One"
+    },
+    {
+      "id": "2",
+      "name": "User Two"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Electronics",
+      "description": "Devices & gadgets"
+    },
+    {
+      "id": "2",
+      "name": "Books",
+      "description": "All kinds of books"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { MdShoppingCart } from "react-icons/md";
 import logo from "../assets/quitqlogo.png";
@@ -10,6 +11,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const { cartItems } = useCart();
+  const navigate = useNavigate();
 
   const categories = [
     "Electronics",
@@ -52,6 +54,7 @@ const Navbar = () => {
             </div>
             <span>Cart</span>
           </Link>
+
           {user && (
             <Link
               to="/my-orders"
@@ -61,6 +64,7 @@ const Navbar = () => {
               My Orders
             </Link>
           )}
+
           {user ? (
             <>
               <span className="nav-link">Hello, {user.name}</span>
@@ -70,12 +74,14 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <span className="nav-link">Become a Seller</span>
-              <Link
-                to="/login"
+              <span
                 className="nav-link"
-                style={{ textDecoration: "none" }}
+                onClick={() => navigate("/seller-login")}
+                style={{ cursor: "pointer" }}
               >
+                Become a Seller
+              </span>
+              <Link to="/login" className="nav-link" style={{ textDecoration: "none" }}>
                 Login
               </Link>
             </>
