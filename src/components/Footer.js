@@ -1,6 +1,5 @@
-// src/components/Footer.js
 import React from "react";
-import { Link } from "react-router-dom"; // Link for routing
+import { Link } from "react-router-dom";
 import "../App.css";
 import logo from "../assets/quitqlogo.png";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
@@ -9,7 +8,6 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-columns">
-        {/* Left-aligned Logo and Description */}
         <div className="footer-left">
           <div className="footer-logo">
             <img src={logo} alt="QuitQ Logo" />
@@ -18,9 +16,30 @@ const Footer = () => {
             Your one-stop destination for unique finds, daily deals, and unbeatable value. Discover more with QuitQ.
           </p>
           <div className="footer-social-icons">
-            <FaFacebookF className="social-icon" />
-            <FaTwitter className="social-icon" />
-            <FaInstagram className="social-icon" />
+            <a
+              href="https://www.facebook.com/quitqstore"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <FaFacebookF className="social-icon" />
+            </a>
+            <a
+              href="https://twitter.com/quitqtweets"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <FaTwitter className="social-icon" />
+            </a>
+            <a
+              href="https://www.instagram.com/quitqofficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <FaInstagram className="social-icon" />
+            </a>
           </div>
         </div>
 

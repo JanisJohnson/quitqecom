@@ -71,15 +71,15 @@ const Checkout = () => {
       address,
     };
 
-    // Store in localStorage
+   
     const prevOrders = JSON.parse(localStorage.getItem("orders")) || [];
     const updatedOrders = [...prevOrders, newOrder];
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
 
-    // Also store address separately if needed
+    
     localStorage.setItem("shippingAddress", JSON.stringify(address));
 
-    // Navigate
+    
     if (paymentMethod === "Card") {
       navigate("/payment", { state: newOrder });
     } else {

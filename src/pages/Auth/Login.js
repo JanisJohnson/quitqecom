@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // ✅ AuthContext
+import { useAuth } from "../context/AuthContext";
 import "../../App.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login } = useAuth(); // ✅ Access login function from context
+  const { login } = useAuth(); 
 
-  // ✅ Validation functions
+  
   const isValidEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   const isValidPassword = (password) => password.length >= 8;
@@ -27,7 +27,7 @@ const LoginPage = () => {
       return;
     }
 
-    // ✅ Simulate a login response similar to backend
+   
     const fakeToken = "demo-token";
 
     const fakeUser = {
@@ -36,30 +36,25 @@ const LoginPage = () => {
       email: email,
       password: password,
       contact_number: "9876543210",
-      role: "seller", // 🔁 You can test with "admin" or "user"
+      role: "seller", 
     };
 
-    login(fakeToken, fakeUser); // ✅ AuthContext handles setting user/token
+    login(fakeToken, fakeUser); 
   };
 
   return (
     <div className="auth-page">
       <div className="auth-container">
-        {/* Greeting */}
         <div className="auth-greeting">
           <h3>Hello User,</h3>
           <p>To access your QuitQ account, please login.</p>
         </div>
-
-        {/* Header + Register Link */}
         <div className="auth-header">
           <h2>Login</h2>
           <Link to="/register" className="auth-switch">
             Register
           </Link>
         </div>
-
-        {/* Login Form */}
         <form className="auth-form" onSubmit={handleLogin}>
           <label>Email address</label>
           <input

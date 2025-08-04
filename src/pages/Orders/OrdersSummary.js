@@ -9,9 +9,9 @@ const OrderSummary = () => {
   useEffect(() => {
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     if (orders.length === 0) {
-      navigate('/'); // No orders, redirect
+      navigate('/'); 
     } else {
-      const recent = orders[orders.length - 1]; // latest order
+      const recent = orders[orders.length - 1]; 
       setLatestOrder(recent);
     }
   }, [navigate]);
@@ -28,7 +28,7 @@ const OrderSummary = () => {
   return (
     <div className="order-summary-page">
       <div className="confirmation">
-        <div className="checkmark">✅</div>
+        <div className="checkmark"></div>
         <h2>Thanks for your order!</h2>
         <p>Your order was placed successfully.</p>
       </div>

@@ -1,4 +1,3 @@
-// src/pages/Home.js
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useLocation } from 'react-router-dom';
@@ -30,12 +29,12 @@ const Home = () => {
 
   return (
     <div>
-      {/* Full-width banner */}
+      
       <div className="carousel-wrapper">
         <BannerSlider />
       </div>
 
-      {/* Main content (centered) */}
+      
       <div className="home-container">
         <h2>{category ? `${category} Products` : 'All Products'}</h2>
         <div className="product-grid">

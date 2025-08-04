@@ -24,7 +24,6 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div className="navbar-left">
-          {/* RECTANGLE LOGO */}
           <div className="logo-rectangle">
             <img src={logo} alt="QuitQ Logo" className="logo-img-rectangle" />
           </div>
@@ -44,7 +43,6 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
-          {/* ✅ Cart with navigation */}
           <Link to="/cart" className="nav-link cart-link" style={{ textDecoration: "none" }}>
             <div className="cart-icon-wrapper">
               <MdShoppingCart className="cart-icon" />
@@ -54,8 +52,6 @@ const Navbar = () => {
             </div>
             <span>Cart</span>
           </Link>
-
-          {/* ✅ Show My Orders only if logged in */}
           {user && (
             <Link
               to="/my-orders"
@@ -65,8 +61,6 @@ const Navbar = () => {
               My Orders
             </Link>
           )}
-
-          {/* Then Become a Seller and Login/Logout */}
           {user ? (
             <>
               <span className="nav-link">Hello, {user.name}</span>

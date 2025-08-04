@@ -74,7 +74,7 @@ function App() {
                 <Route path="/terms-of-use" element={<FooterContent />} />
                 <Route path="/security" element={<FooterContent />} />
                 <Route path="/privacy" element={<FooterContent />} />
-                {/* === End Footer Pages === */}
+                {/*End*/}
 
                 {/* 404 Fallback */}
                 <Route path="*" element={<div>404 Page Not Found</div>} />

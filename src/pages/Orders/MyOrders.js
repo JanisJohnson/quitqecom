@@ -5,7 +5,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     const storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
-    setOrders(storedOrders.reverse()); // latest first
+    setOrders(storedOrders.reverse()); 
   }, []);
 
   return (

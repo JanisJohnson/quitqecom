@@ -5,7 +5,6 @@ import { useAuth } from "../pages/context/AuthContext";
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { isAuthenticated, user } = useAuth();
 
-  // If AuthContext says not authenticated, fallback to localStorage
   const token = localStorage.getItem("token");
   const localUser = JSON.parse(localStorage.getItem("user"));
 

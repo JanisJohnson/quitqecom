@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1); // ✅ New state
+  const [quantity, setQuantity] = useState(1); 
   const { addToCart, cartItems } = useCart();
 
   useEffect(() => {
