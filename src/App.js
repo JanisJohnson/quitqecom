@@ -72,19 +72,81 @@ function AppContent() {
 
       <div className="content">
         <Routes>
-          {/* === User Routes === */}
-          <Route path="/" element={<Home />} />
+          {/* === Public Routes === */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/order-summary" element={<OrderSummary />} />
-          <Route path="/my-orders" element={<MyOrders />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/track-order" element={<TrackOrder />} />
+          <Route path="/seller-login" element={<SellerLogin />} />
+          <Route path="/buisness-register" element={<BuisnessRegistration />} />
+          <Route path="/buisness-register/:sellerId" element={<BuisnessRegistration />} />
+          <Route path="/pending-verification" element={<PendingVerification />} />
 
-          {/* === Footer Pages === */}
+          {/* === Protected User Routes === */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/products/:id"
+            element={
+              <ProtectedRoute>
+                <ProductDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order-summary"
+            element={
+              <ProtectedRoute>
+                <OrderSummary />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-orders"
+            element={
+              <ProtectedRoute>
+                <MyOrders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <PaymentPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/track-order"
+            element={
+              <ProtectedRoute>
+                <TrackOrder />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* === Public Footer Pages === */}
           <Route path="/about-us" element={<FooterContent />} />
           <Route path="/contact-us" element={<FooterContent />} />
           <Route path="/careers" element={<FooterContent />} />
@@ -101,12 +163,6 @@ function AppContent() {
           {/* === Admin Routes === */}
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/kyc" element={<KYCApproval />} />
-
-          {/* === Seller Public Routes === */}
-          <Route path="/seller-login" element={<SellerLogin />} />
-          <Route path="/buisness-register" element={<BuisnessRegistration />} />
-          <Route path="/buisness-register/:sellerId" element={<BuisnessRegistration />} />
-          <Route path="/pending-verification" element={<PendingVerification />} />
 
           {/* === Seller Protected Routes === */}
           <Route

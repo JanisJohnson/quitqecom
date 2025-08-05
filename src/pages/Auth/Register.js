@@ -6,6 +6,7 @@ const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const isValidName = (name) => {
     return /^[A-Za-z\s]+$/.test(name.trim()); 
   };
@@ -36,27 +37,41 @@ const RegisterPage = () => {
       return;
     }
 
-    
+    // Save user to localStorage
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const userExists = users.find((user) => user.email === email);
+    if (userExists) {
+      alert("This email is already registered.");
+      return;
+    }
+
+    const newUser = {
+      name,
+      email,
+      password,
+      role: "seller",
+      contact_number: "",
+    };
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
     console.log("Registered with:", name, email, password);
-    alert("Registration successful (demo)");
+    alert("Registration successful!");
   };
 
   return (
     <div className="auth-page">
       <div className="auth-container">
-        
         <div className="auth-greeting">
           <h3>Welcome to QuitQ!</h3>
           <p>Create your account to explore unique finds and great deals.</p>
         </div>
-
-        
         <div className="auth-header">
           <h2>Register</h2>
           <Link to="/login" className="auth-switch">Login</Link>
         </div>
-
-        
         <form className="auth-form" onSubmit={handleRegister}>
           <label>Full Name</label>
           <input
@@ -66,7 +81,6 @@ const RegisterPage = () => {
             onChange={(e) => setName(e.target.value)}
             required
           />
-
           <label>Email Address</label>
           <input
             type="email"
@@ -75,7 +89,6 @@ const RegisterPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-
           <label>Password</label>
           <input
             type="password"
@@ -84,10 +97,7 @@ const RegisterPage = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-
           <button type="submit" className="auth-button">Register</button>
-
-          
           <p className="auth-disclaimer">
             By clicking <strong>Register</strong>, you agree to QuitQ’s
             <a href="/terms" target="_blank" rel="noopener noreferrer"> Terms of Use </a>

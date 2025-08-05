@@ -30,26 +30,39 @@ const Checkout = () => {
     return `#${random}`;
   };
 
+  // Address form validation only (minimal, strict checks)
   const validateForm = () => {
     const newErrors = {};
     const { fullName, phone, street, city, state, pincode, country } = address;
 
-    if (!fullName.trim()) newErrors.fullName = "Full Name is required.";
-    else if (fullName.trim().length < 3) newErrors.fullName = "Minimum 3 characters required.";
+    // Full name: required, min 3 chars, letters/spaces allowed
+    if (!fullName || !fullName.toString().trim()) newErrors.fullName = "Full Name is required.";
+    else if (fullName.toString().trim().length < 3) newErrors.fullName = "Minimum 3 characters required.";
+    else if (!/^[a-zA-Z\s.'-]+$/.test(fullName.toString().trim())) newErrors.fullName = "Only letters and spaces allowed.";
 
-    const phoneRegex = /^[6-9]\d{9}$/;
-    if (!phone.trim()) newErrors.phone = "Phone number is required.";
-    else if (!phoneRegex.test(phone)) newErrors.phone = "Invalid phone number.";
+    // Phone: required, Indian 10-digit mobile format
+    if (!phone || !phone.toString().trim()) newErrors.phone = "Phone number is required.";
+    else if (!/^[6-9]\d{9}$/.test(phone.toString().trim())) newErrors.phone = "Invalid phone number.";
 
-    if (!street.trim()) newErrors.street = "Street is required.";
-    if (!city.trim()) newErrors.city = "City is required.";
-    if (!state.trim()) newErrors.state = "State is required.";
+    // Street: required, reasonable length
+    if (!street || !street.toString().trim()) newErrors.street = "Street is required.";
+    else if (street.toString().trim().length < 5) newErrors.street = "Enter a more detailed street address.";
 
-    const pincodeRegex = /^\d{6}$/;
-    if (!pincode.trim()) newErrors.pincode = "Pincode is required.";
-    else if (!pincodeRegex.test(pincode)) newErrors.pincode = "Invalid pincode.";
+    // City: required, letters/spaces
+    if (!city || !city.toString().trim()) newErrors.city = "City is required.";
+    else if (!/^[a-zA-Z\s.'-]+$/.test(city.toString().trim())) newErrors.city = "City can contain only letters and spaces.";
 
-    if (!country.trim()) newErrors.country = "Country is required.";
+    // State: required, letters/spaces
+    if (!state || !state.toString().trim()) newErrors.state = "State is required.";
+    else if (!/^[a-zA-Z\s.'-]+$/.test(state.toString().trim())) newErrors.state = "State can contain only letters and spaces.";
+
+    // Pincode: required, 6 digits
+    if (!pincode || !pincode.toString().trim()) newErrors.pincode = "Pincode is required.";
+    else if (!/^\d{6}$/.test(pincode.toString().trim())) newErrors.pincode = "Invalid pincode.";
+
+    // Country: required, letters/spaces
+    if (!country || !country.toString().trim()) newErrors.country = "Country is required.";
+    else if (!/^[a-zA-Z\s.'-]+$/.test(country.toString().trim())) newErrors.country = "Country can contain only letters and spaces.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -71,15 +84,12 @@ const Checkout = () => {
       address,
     };
 
-   
     const prevOrders = JSON.parse(localStorage.getItem("orders")) || [];
     const updatedOrders = [...prevOrders, newOrder];
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
 
-    
     localStorage.setItem("shippingAddress", JSON.stringify(address));
 
-    
     if (paymentMethod === "Card") {
       navigate("/payment", { state: newOrder });
     } else {

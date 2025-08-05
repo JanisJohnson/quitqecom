@@ -6,10 +6,8 @@ import "../../App.css";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { login } = useAuth(); 
 
-  
   const isValidEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   const isValidPassword = (password) => password.length >= 8;
@@ -27,19 +25,19 @@ const LoginPage = () => {
       return;
     }
 
-   
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const matchedUser = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (!matchedUser) {
+      alert("Invalid email or password. Please register first if you haven't.");
+      return;
+    }
+
     const fakeToken = "demo-token";
 
-    const fakeUser = {
-      id: 101,
-      name: "Demo User",
-      email: email,
-      password: password,
-      contact_number: "9876543210",
-      role: "seller", 
-    };
-
-    login(fakeToken, fakeUser); 
+    login(fakeToken, matchedUser);
   };
 
   return (
@@ -81,15 +79,12 @@ const LoginPage = () => {
           <p className="auth-disclaimer">
             By clicking <strong>Login</strong>, you agree to QuitQ’s
             <a href="/terms" target="_blank" rel="noopener noreferrer">
-              {" "}
-              Terms of Use{" "}
+              {" "}Terms of Use{" "}
             </a>
             and
             <a href="/privacy" target="_blank" rel="noopener noreferrer">
-              {" "}
-              Privacy Policy
-            </a>
-            .
+              {" "}Privacy Policy
+            </a>.
           </p>
         </form>
       </div>
